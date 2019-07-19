@@ -1,0 +1,27 @@
+package com.miraazman.sample;
+
+import java.util.*;
+
+public class UtilCheck {
+	
+	public static void main(String args[]){
+		
+		/*Non Generic
+		List list = new ArrayList();
+		
+		list.add("Hello");
+		
+		telling compiler that we know it's a string
+		String s = (String)list.get(0);
+		*/
+		
+		//Generic
+		List <String> list = new ArrayList <String>();
+		
+		list.add("Hello");
+		//list.add(new FinalClass());
+		String s = list.get(0);
+		
+		System.out.println("I got: " + s);
+	}
+}

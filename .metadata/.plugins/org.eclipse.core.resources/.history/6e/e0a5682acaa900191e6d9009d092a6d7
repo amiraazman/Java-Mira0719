@@ -1,0 +1,36 @@
+package com.miraazman.sample;
+
+import java.util.*;
+
+public class UtilCheck {
+	
+	public static void main(String args[]){
+		
+		/*Non Generic need typecasting
+		List list = new ArrayList();
+		
+		list.add("Hello");
+		
+		telling compiler that we know it's a string
+		String s = (String)list.get(0);
+		*/
+		
+		//Generic
+		List <String> list = new ArrayList <String>();
+		
+		list.add("Hello");
+		//list.add(new FinalClass());
+		list.add("Hello I am Baymax");
+		list.add("Your Personal Healthcare Taker");
+		list.add("Nice to meet u Baymax");
+		
+		//String s = list.get(0);
+		
+		for (String s : list){
+		
+		//System.out.println("I got: " + s);
+			System.out.print(s + " ");
+		
+		}
+	}
+}

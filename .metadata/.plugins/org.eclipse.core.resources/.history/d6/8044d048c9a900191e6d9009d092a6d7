@@ -1,0 +1,18 @@
+package com.miraazman.sample;
+
+import java.util.*;
+
+public class UtilCheck {
+	
+	public static void main(String args[]){
+		
+		List list = new ArrayList();
+		
+		list.add("Hello");
+		
+		//telling compiler that we know it's a string
+		String s = (String)list.get(0);
+		
+		System.out.println("I got: " + s);
+	}
+}
