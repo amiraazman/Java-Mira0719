@@ -1,0 +1,154 @@
+package com.mira;
+
+import java.util.Scanner;
+import java.io.File;
+import java.io.IOException;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+//package banking;
+
+/**
+ *
+ * @author amira.ma
+ */
+
+
+/*5 functions:
+1. create account (banker) /
+2. login account (customer) 
+3. deposit (customer) /
+4. withdrawal (customer) /
+5. exit
+*/
+class Bank{
+    //customer name
+    private String CustName;
+    //customer account number
+    private String CustAcc;
+    //customer account balance
+    private long CustBal;
+    
+    //user input
+    Scanner myScan = new Scanner(System.in);
+    
+    //open new account
+    public void CreateAcc(){
+            
+        System.out.println("Enter customer account: ");
+        CustAcc = myScan.next();
+        System.out.println("Enter customer name: ");
+        CustName = myScan.next();
+        System.out.println("Enter customer account balance: ");
+        CustBal = myScan.nextLong();
+    }  
+    
+    //view created account of customer
+    public void ViewAcc(){
+        System.out.println("Customer account: " + CustAcc);
+        System.out.println("Customer name: " + CustName);
+        System.out.println("Customer account balance: RM " + CustBal);
+    }
+    
+    //deposit into account
+    public void Deposit(){
+        long amount;
+        System.out.println("Enter the deposit amount: RM ");
+        amount = myScan.nextLong();
+        //new balance after deposit
+        CustBal = CustBal + amount;
+        //return new balance
+        System.out.println("Transaction successful.");
+        System.out.println("Balance of account is:RM " + CustBal);
+    }
+    //withdraw from account
+    public void Withdraw(){
+        long amount;
+        System.out.println("Enter the withdrawal amount: RM ");
+        amount = myScan.nextLong();
+        
+        if(CustBal>amount){
+        //new balance after withdrawal
+            CustBal = CustBal - amount;
+            //return new balance
+            System.out.println("Transaction successful.");
+            System.out.println("Balance of account is:RM " + CustBal);
+
+        } else {
+            System.out.println("Transaction failed due to low amount of balance.");
+        }
+    }
+    
+    //login account
+    boolean Account(String acc){
+        if (CustAcc.equals(acc)){
+            ViewAcc();
+            return(true);
+        }
+        
+        return (false);
+    }
+    
+}
+public class Banking {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        int who;
+        
+        
+        Scanner myScan = new Scanner(System.in);
+        
+        System.out.println("-----*****KINGDOM BANK*****-----");
+        System.out.println("Welcome to Kingdom Bank!");
+        
+        System.out.println("Who are you? (Please choose): ");
+        System.out.println("1. Banker");
+        System.out.println("2. Customer");
+        System.out.print("Enter option: ");
+        who = myScan.nextInt();
+        
+        if(who == 1){
+            int opt;
+            System.out.println("Hello Banker");
+            //System.out.println("Please choose your option: ");
+            System.out.println("1. Create customer account");
+            //System.out.println("2. View existed customer");
+            opt = myScan.nextInt();
+                    
+            //add new customer account
+            if(opt == 1){
+                int x;
+                System.out.print("Enter number of new customer: ");
+                x = myScan.nextInt();
+                if(x >= 1){
+                    //create an array for x number of new customer account
+                    Bank A[] = new Bank[x];
+                    for(int i=0; i<A.length; i++){
+                        A[i] = new Bank();
+                        //create x number of new account for x number of new customer
+                        A[i].CreateAcc();
+                    }
+                }
+            } else {
+                System.out.println("You have not create any customer");
+            }
+        }
+        
+        else if(who == 2){
+            int opt;
+            System.out.println("Hello Customer");
+            System.out.println("Please choose your option: ");
+            System.out.println("1. Login to your account ");
+            System.out.println("2. Deposit to your account ");
+            System.out.println("3. Withdraw from your account ");
+            opt = myScan.nextInt();
+        }
+    }
+}
+    
