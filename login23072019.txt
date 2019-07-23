@@ -1,0 +1,146 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package trybanking;
+
+import java.io.BufferedReader;
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+/**
+ *
+ * @author amira.ma
+ */
+public class Login {
+    
+    
+    public static void main(String[] args){
+    
+        
+        //String Useracc = "1100";
+        //String Username = "mira";
+        //String filepath = "Bank1.txt";
+        //verifyLogin(Useracc, Username, filepath);
+        Login trying = new Login();
+        trying.Register();
+        trying.viewAcc();
+        
+    }
+    /*1. verify login
+    public static void verifyLogin(String Useracc, String Username, String filepath){
+        //stop after found the acc and name
+        boolean got = false;
+        String tempAcc = "";
+        String tempName = "";
+        
+       //try catch for file handling
+        try{
+            //scan the file
+            Scanner myScan = new Scanner(new File(filepath));
+            //scan file data pattern separated with a ','
+            myScan.useDelimiter("[,\n]");
+            
+            //loop if still not found
+            while(myScan.hasNext() && !got){
+                tempAcc = myScan.next();
+                tempName = myScan.next();
+                
+                //trim removes whitespace from both side string
+                //equals compare the username and acc with tempName and tempAcc
+                if (tempAcc.trim().equals(Useracc.trim())  &&  tempName.trim().equals(Username.trim())){
+                    got = true;
+                    //System.out.println(name);
+                    //System.out.println(acc);
+                    
+                }
+            }
+            //close() to free up memory (close file when not using it)
+            myScan.close();
+            System.out.println(got);
+        }
+        catch(Exception e){
+            System.out.println("Error!");
+            e.printStackTrace();
+            
+        }
+    }
+    */
+    
+    //2. add data to the file
+    public void Register(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter your account: ");
+        String account = sc.next();
+        System.out.println("Enter your name: ");
+        String name = sc.next();
+        System.out.println("Enter your balance: ");
+        int bal = sc.nextInt();
+        try{
+            //write into file Bank1.txt
+            File wf = new File("Bank1.txt");
+            PrintWriter pw = new PrintWriter(new FileOutputStream(wf, true));          
+            pw.println();
+            pw.append(account +"," + name+ "," + bal);            
+            pw.close();
+            System.out.println("Successful to register");
+        } catch(IOException e){
+            System.out.println("Unsuccessful to register");
+            e.printStackTrace();
+        }
+    }
+    
+    /*public void ViewAcc(){
+        try{
+            //Bufferedreader reads text from character input
+            BufferedReader buff = new BufferedReader(new FileReader("Bank1.txt")) ;
+            String a = "";
+            
+            while((a = buff.readLine()) !=null){
+                //size of column separated by ',' = 5
+                String data[] = new String[10];
+                //splits string add space to output instead of comma
+                data = a.split(",");
+                for(int i=0; i < 10; i++){
+                    //print data according to array
+                    System.out.print(data[i]+" ");
+                }
+                System.out.println();
+            
+        }
+            
+        }catch(Exception e){
+            System.out.println("Unsuccessful");
+            e.printStackTrace();
+        }
+        
+    }
+    */
+    
+    public void viewAcc(){
+        try{
+        File rf = new File("Bank1.txt");
+        Scanner file = new Scanner(rf);
+        
+        while(file.hasNextLine()){
+            String a = file.nextLine();
+            //split the data into its own field
+            String[] data = a.split(",");
+             System.out.println("Account: " + data[0]);
+             System.out.println("Name: " + data[1]);
+             System.out.println("Balance: " + data[2]);
+        }
+       
+        
+        }catch(Exception e){
+            System.out.println("Unsuccessful to view");
+            e.printStackTrace();
+        }
+        
+    }
+}
